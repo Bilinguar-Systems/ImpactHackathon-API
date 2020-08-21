@@ -22,6 +22,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/me', 'UsersController@getMe');
 
     Route::post('/projects', 'ProjectsController@createProject');
+
+    Route::post('/projects/{project_id}/products', 'ProductsController@createProduct');
+
 });
 
 Route::post('/register', 'UsersController@registerUser');
