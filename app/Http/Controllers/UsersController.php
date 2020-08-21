@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -19,5 +20,17 @@ class UsersController extends Controller
         ]);
 
         return User::create($request->all());
+    }
+
+    public function getMe(Request $request) {
+        return Auth::user();
+    }
+
+    public function getUser($user_id) {
+        return User::where('id', '=', $user_id)->first();
+    }
+
+    public function getUsers() {
+        return User::paginate(10);
     }
 }
