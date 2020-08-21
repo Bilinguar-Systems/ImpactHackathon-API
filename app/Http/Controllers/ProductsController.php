@@ -53,4 +53,8 @@ class ProductsController extends Controller
         return $product;
     }
 
+    public function getProducts() {
+        return Product::paginate(10);
+    }
+
 }

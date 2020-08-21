@@ -44,6 +44,8 @@ Route::get('/search/products', 'ProductsController@searchProduct');
 
 //Projects
 Route::get('/project/{project_id}', 'ProjectsController@getProject');
+Route::get('/projects', 'ProjectsController@getProjects');
 
 //Products
 Route::get('/product/{product_id}', 'ProductsController@getProduct');
+Route::get('/products', 'ProductsController@getProducts');

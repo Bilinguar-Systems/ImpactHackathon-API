@@ -48,4 +48,8 @@ class ProjectsController extends Controller
 
         return $project;
     }
+
+    public function getProjects() {
+        return Project::paginate(10);
+    }
 }
