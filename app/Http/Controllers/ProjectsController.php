@@ -25,4 +25,8 @@ class ProjectsController extends Controller
         ]);
 
     }
+
+    public function getProject($project_id) {
+        return Project::where('id', '=', $project_id)->first();
+    }
 }

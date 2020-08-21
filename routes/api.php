@@ -26,7 +26,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::post('/register', 'UsersController@registerUser');
 
+//Users
 Route::get('/user/{user_id}', 'UsersController@getUser');
 Route::get('/users', 'UsersController@getUsers');
 
 Route::get('/search/users', 'UsersController@searchUsers');
+
+//Projects
+Route::get('/project/{project_id}', 'ProjectsController@getProject');
