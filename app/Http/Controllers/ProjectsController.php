@@ -29,4 +29,10 @@ class ProjectsController extends Controller
     public function getProject($project_id) {
         return Project::where('id', '=', $project_id)->first();
     }
+
+    public function searchProject(Request $request) {
+        $term = $request->get('term', '');
+
+        return Project::where('project', 'like', '%'. $term . '%')->paginate(10);
+    }
 }

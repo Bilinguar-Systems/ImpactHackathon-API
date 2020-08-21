@@ -30,6 +30,8 @@ Route::post('/register', 'UsersController@registerUser');
 Route::get('/user/{user_id}', 'UsersController@getUser');
 Route::get('/users', 'UsersController@getUsers');
 
+
+Route::get('/search/projects', 'ProjectsController@searchProject');
 Route::get('/search/users', 'UsersController@searchUsers');
 
 //Projects
