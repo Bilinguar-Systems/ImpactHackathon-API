@@ -30,4 +30,8 @@ class ProductsController extends Controller
         ]);
 
     }
+
+    public function getProduct($product_id) {
+        return Product::where('id', '=', $product_id)->first();
+    }
 }

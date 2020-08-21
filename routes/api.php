@@ -33,9 +33,12 @@ Route::post('/register', 'UsersController@registerUser');
 Route::get('/user/{user_id}', 'UsersController@getUser');
 Route::get('/users', 'UsersController@getUsers');
 
-
+//Search
 Route::get('/search/projects', 'ProjectsController@searchProject');
 Route::get('/search/users', 'UsersController@searchUsers');
 
 //Projects
 Route::get('/project/{project_id}', 'ProjectsController@getProject');
+
+//Products
+Route::get('/product/{product_id}', 'ProductsController@getProduct');
