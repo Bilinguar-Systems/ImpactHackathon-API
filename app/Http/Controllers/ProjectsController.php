@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProjectsController extends Controller
 {
@@ -34,5 +35,17 @@ class ProjectsController extends Controller
         $term = $request->get('term', '');
 
         return Project::where('project', 'like', '%'. $term . '%')->paginate(10);
+    }
+
+    public function deleteProject($project_id) {
+        $project = Project::where('id', '=', $project_id)->firstOrFail();
+
+        if ($project_id->user_id != Auth::user()->id) {
+            return response(null, Response::HTTP_FORBIDDEN);
+        }
+
+        $project->delete();
+
+        return $project;
     }
 }
