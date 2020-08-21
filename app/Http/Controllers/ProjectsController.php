@@ -40,7 +40,7 @@ class ProjectsController extends Controller
     public function deleteProject($project_id) {
         $project = Project::where('id', '=', $project_id)->firstOrFail();
 
-        if ($project_id->user_id != Auth::user()->id) {
+        if ($project->user_id != Auth::user()->id) {
             return response(null, Response::HTTP_FORBIDDEN);
         }
 

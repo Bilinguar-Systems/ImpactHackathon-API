@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductsController extends Controller
 {
@@ -34,4 +35,22 @@ class ProductsController extends Controller
     public function getProduct($product_id) {
         return Product::where('id', '=', $product_id)->first();
     }
+
+    public function searchProduct(Request $request) {
+        $term = $request->get('term', '');
+        return Product::where('items', 'like', '%' . $term .'%')->paginate(10);
+    }
+
+    public function deleteProduct($product_id) {
+        $product = Product::where('id', '=', $product_id)->firstOrFail();
+
+        if ($product->user_id != Auth::user()->id) {
+            return response(null, Response::HTTP_FORBIDDEN);
+        }
+
+        $product->delete();
+
+        return $product;
+    }
+
 }

@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::group(['middleware' => 'auth:api'], function () {
+    //Users
     Route::get('/me', 'UsersController@getMe');
 
+    //Projects
     Route::post('/projects', 'ProjectsController@createProject');
+    Route::delete('/project/{project_id}', 'ProjectsController@deleteProject');
 
+    //Products
     Route::post('/projects/{project_id}/products', 'ProductsController@createProduct');
-
+    Route::delete('/product/{product_id}', 'ProductsController@deleteProduct');
 });
 
 Route::post('/register', 'UsersController@registerUser');
@@ -36,6 +40,7 @@ Route::get('/users', 'UsersController@getUsers');
 //Search
 Route::get('/search/projects', 'ProjectsController@searchProject');
 Route::get('/search/users', 'UsersController@searchUsers');
+Route::get('/search/products', 'ProductsController@searchProduct');
 
 //Projects
 Route::get('/project/{project_id}', 'ProjectsController@getProject');
