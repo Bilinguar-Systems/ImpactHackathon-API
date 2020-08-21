@@ -33,4 +33,21 @@ class UsersController extends Controller
     public function getUsers() {
         return User::paginate(10);
     }
+
+    public function searchUsers(Request $request) {
+        $term = $request->get('term', null);
+
+        $users = User::query();
+
+        $users->orWhere(function ($query) use ($term) {
+            $query->orWhere('first_name', 'like', '%' . $term . '%')
+                ->orWhere('last_name', 'like', '%' . $term . '%')
+                ->orWhere('middle_name', 'like', '%' . $term . '%')
+                ->orWhere('email', 'like', '%' . $term . '%');
+        });
+
+        $users = $users->paginate(10);
+
+        return $users;
+    }
 }

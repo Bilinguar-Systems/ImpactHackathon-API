@@ -27,3 +27,5 @@ Route::post('/register', 'UsersController@registerUser');
 
 Route::get('/user/{user_id}', 'UsersController@getUser');
 Route::get('/users', 'UsersController@getUsers');
+
+Route::get('/search/users', 'UsersController@searchUsers');
