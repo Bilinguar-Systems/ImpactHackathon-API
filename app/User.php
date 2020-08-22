@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->attributes['is_id_verified'] == 1;
     }
+
+    public function address() {
+        return $this->hasOne('App\UserAddress', 'user_id', 'id');
+    }
 }

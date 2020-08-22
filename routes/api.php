@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/me', 'UsersController@getMe');
 
     Route::get('/user/{user_id}/carts', 'CartsController@getUserCarts');
+    Route::post('/user/{user_id}/address', 'UserAddressController@addUserAddress');
     Route::post('/user/{user_id}/id', 'ImageController@uploadImage');
 
     Route::post('/user/{user_id}/id/verify', 'UsersController@verifyUserId');

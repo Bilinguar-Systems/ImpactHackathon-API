@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="762f6ea4-e4d8-447f-9961-e10bca37c117" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_22_042204_add_id_attachment_to_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_22_042204_add_id_attachment_to_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/UserAddress.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserAddress.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +175,7 @@
       <workItem from="1598000835652" duration="18936000" />
       <workItem from="1598042990210" duration="2764000" />
       <workItem from="1598055498910" duration="5255000" />
-      <workItem from="1598065171301" duration="5873000" />
+      <workItem from="1598065171301" duration="6814000" />
     </task>
     <servers />
   </component>
