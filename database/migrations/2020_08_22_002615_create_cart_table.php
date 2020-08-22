@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectTable extends Migration
+class CreateCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateProjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('item_code')->unique();
-            $table->string('project');
-            $table->string('location')->nullable();
-            $table->string('hectars')->nullable();
-            $table->boolean('active')->default(true);
+            $table->integer('project_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateProjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('carts');
     }
 }

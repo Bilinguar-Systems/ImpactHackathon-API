@@ -33,6 +33,6 @@ class CreateUsersAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_adress');
+        Schema::dropIfExists('users_address');
     }
 }
