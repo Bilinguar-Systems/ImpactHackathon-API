@@ -50,4 +50,13 @@ class UsersController extends Controller
 
         return $users;
     }
+
+    public function verifyUserId($user_id) {
+        $user = User::where('id', '=', $user_id)->firstOrFail();
+        $user->is_id_verified = true;
+        $user->save();
+
+        return $user;
+    }
+
 }

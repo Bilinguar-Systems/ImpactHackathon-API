@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user/{user_id}/carts', 'CartsController@getUserCarts');
     Route::post('/user/{user_id}/id', 'ImageController@uploadImage');
 
+    Route::post('/user/{user_id}/id/verify', 'UsersController@verifyUserId');
+
     //Projects
     Route::post('/projects', 'ProjectsController@createProject');
     Route::delete('/project/{project_id}', 'ProjectsController@deleteProject');

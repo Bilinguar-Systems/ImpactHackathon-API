@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function getIsIdVerifiedAttribute()
+    {
+        return $this->attributes['is_id_verified'] == 1;
+    }
 }
