@@ -23,11 +23,13 @@ class UsersController extends Controller
     }
 
     public function getMe(Request $request) {
-        return Auth::user();
+        return $this->getUser(Auth::user()->id);
     }
 
     public function getUser($user_id) {
-        return User::where('id', '=', $user_id)->first();
+        return User::where('id', '=', $user_id)
+            ->with('address')
+            ->first();
     }
 
     public function getUsers() {
