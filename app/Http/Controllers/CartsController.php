@@ -15,10 +15,11 @@ class CartsController extends Controller
         $data = json_decode($request->getContent(), true);
 
         $rules = [
-            '*.product_id' => 'required|numeric',
-            '*.name' => 'required|max:255',
-            '*.product_cost' => 'required|numeric',
-            '*.quantity' => 'required|numeric',
+            'mode_of_payment' => 'required',
+            'products.*.product_id' => 'required|numeric',
+            'products.*.name' => 'required|max:255',
+            'products.*.product_cost' => 'required|numeric',
+            'products.*.quantity' => 'required|numeric',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -29,9 +30,10 @@ class CartsController extends Controller
         $cart = Cart::create([
             'user_id' => Auth::user()->id,
             'project_id' => $project_id,
+            'mode_of_payment' => $data['mode_of_payment']
         ]);
 
-        foreach ($data as $product) {
+        foreach ($data['products'] as $product) {
             CartProduct::create([
                 'user_id' => Auth::user()->id,
                 'project_id' => $project_id,
@@ -49,4 +51,58 @@ class CartsController extends Controller
 
         return $cart;
     }
+
+    public function confirmOrder($cart_id) {
+        $cart = Cart::where('id', '=', $cart_id)
+            ->with('products')
+            ->firstOrFail();
+
+        $cart->is_paid = true;
+        $cart->save();
+
+        return $cart;
+    }
+
+    public function getCart($cart_id) {
+        return Cart::where('id', '=', $cart_id)
+            ->with('products')
+            ->first();
+    }
+
+    public function getProjectCarts(Request  $request, $project_id) {
+        $status = $request->get('status', null);
+
+        $carts = Cart::where('project_id', '=', $project_id)
+            ->with('products');
+
+        if ($status != null)
+            $carts->where('is_paid', '=', $status == 'paid' ? 1 : 0);
+
+        $carts = $carts->paginate(10);
+
+        return $carts;
+    }
+
+    public function getUserCarts(Request  $request, $user_id) {
+        $status = $request->get('status', null);
+
+        $carts = Cart::where('user_id', '=', $user_id)
+            ->with('products');
+
+        if ($status != null)
+            $carts->where('is_paid', '=', $status == 'paid' ? 1 : 0);
+
+        $carts = $carts->paginate(10);
+
+        return $carts;
+    }
+
+    public function deleteCart($cart_id) {
+        $cart = Cart::where('id', '=', $cart_id)->firstOrFail();
+        $cart->delete();
+        CartProduct::where('cart_id', '=', $cart_id)->delete();
+
+        return $cart;
+    }
+
 }

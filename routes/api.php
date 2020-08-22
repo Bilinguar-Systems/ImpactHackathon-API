@@ -22,9 +22,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     //Users
     Route::get('/me', 'UsersController@getMe');
 
+    Route::get('/user/{user_id}/carts', 'CartsController@getUserCarts');
+
     //Projects
     Route::post('/projects', 'ProjectsController@createProject');
     Route::delete('/project/{project_id}', 'ProjectsController@deleteProject');
+
+    Route::get('/projects/{project_id}/carts', 'CartsController@getProjectCarts');
 
     //Products
     Route::post('/projects/{project_id}/products', 'ProductsController@createProduct');
@@ -32,6 +36,10 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     //Cart
     Route::post('/cart/project/{project_id}', 'CartsController@createCart');
+
+    Route::post('/cart/{cart_id}/confirm', 'CartsController@confirmOrder');
+    Route::get('/cart/{cart_id}', 'CartsController@getCart');
+    Route::delete('/cart/{cart_id}', 'CartsController@deleteCart');
 });
 
 Route::post('/register', 'UsersController@registerUser');
