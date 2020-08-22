@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
             'date_of_birth' => '1993-8-11',
             'email' => 'admin@bilinguar.systems',
             'password' => Hash::make('password'),
+            'role' => 'admin'
         ]);
 
     }
